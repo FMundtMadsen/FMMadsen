@@ -2,16 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Filip M. Madsen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #05070d;
       --card: rgba(20, 25, 35, 0.85);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #8b9cff;
+      --text: #e6e8ee;
+      --muted: #9aa3b2;
+      --accent: #9aa8ff;
+      --max-width: 760px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -19,79 +29,131 @@
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.75;
+      letter-spacing: 0.01em;
     }
 
     header {
-      height: 90vh;
+      min-height: 92vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(rgba(5,7,13,0.75), rgba(5,7,13,0.95)), url('images/banner.png') center/cover no-repeat;
+      background:
+        linear-gradient(rgba(5,7,13,0.78), rgba(5,7,13,0.95)),
+        url('images/banner.png') center/cover no-repeat;
       padding: 2rem;
+    }
+
+    .hero-inner {
+      max-width: 760px;
     }
 
     header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 600;
       margin: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: var(--muted);
+      margin-top: 1rem;
+      font-size: 1.15rem;
     }
 
     header p {
-      color: var(--muted);
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      max-width: 600px;
+      max-width: 620px;
+      margin: 1rem auto 0;
+      color: var(--text);
+      font-size: 1.02rem;
     }
 
     .cta {
       margin-top: 2rem;
-      font-weight: 600;
+      font-weight: 500;
       color: var(--accent);
+      font-size: 1rem;
     }
 
     .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem;
     }
 
     .section {
-      margin-bottom: 3.5rem;
+      margin-bottom: 4rem;
     }
 
     .section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.9rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .section p {
+      margin: 0 0 1rem;
     }
 
     .card {
       background: var(--card);
       padding: 1.5rem;
-      border-radius: 10px;
+      border-radius: 12px;
     }
 
     ul {
       padding-left: 1.2rem;
+      margin: 1rem 0;
     }
 
-    .newsletter input {
-      padding: 0.7rem;
-      width: 65%;
-      border: none;
-      border-radius: 5px;
-      margin-right: 0.5rem;
+    li {
+      margin-bottom: 0.45rem;
     }
 
-    .newsletter button {
-      padding: 0.7rem 1rem;
+    .newsletter-box {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+
+    .newsletter-form {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .newsletter-form input {
+      flex: 1 1 260px;
+      min-width: 220px;
+      padding: 0.85rem 0.95rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      background: #111827;
+      color: var(--text);
+    }
+
+    .newsletter-form button {
+      padding: 0.85rem 1.1rem;
+      border: none;
+      border-radius: 8px;
       background: var(--accent);
       color: white;
       cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+    }
+
+    .newsletter-form button:hover {
+      opacity: 0.9;
     }
 
     a {
@@ -99,100 +161,134 @@
       text-decoration: none;
     }
 
+    a:hover {
+      opacity: 0.82;
+    }
+
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem 1.5rem 3rem;
       color: var(--muted);
-      font-size: 0.85rem;
-      max-width: 700px;
-      margin: auto;
+      font-size: 0.92rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 2.5rem 1.25rem;
+      }
+
+      .section h2 {
+        font-size: 1.7rem;
+      }
+
+      .card,
+      .newsletter-box {
+        padding: 1.25rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div>
-    <h1>Filip M. Madsen, PhD</h1>
-    <p><em>Molecular biologist explaining how life works—one idea at a time.</em></p>
-    <p>Biology is extraordinarily complex. Yet much of it follows a few simple rules.</p>
-    <p>I write short essays that open the “black box” of life—from everyday experiences to the molecular level.</p>
-    <div class="cta">→ Biweekly newsletter (every second week)</div>
-  </div>
-</header>
+  <header>
+    <div class="hero-inner">
+      <h1>Filip M. Madsen, PhD</h1>
+      <div class="subtitle">Molecular biologist explaining how life works—one idea at a time.</div>
 
-<div class="container">
+      <p>Biology is extraordinarily complex. Yet much of it follows a few simple rules.</p>
+      <p>I write short essays that open the “black box” of life—from everyday experiences to the molecular level.</p>
 
-<div class="section">
-  <h2>About</h2>
-  <p>I am a molecular biologist with nearly two decades of experience studying how life works at the molecular level.</p>
-  <p>I received my PhD in medical science from the Karolinska Institute and have conducted research at institutions including the Broad Institute of MIT and Harvard, and the University of Copenhagen. My work has focused on molecular and cellular biology, with applications ranging from cancer and diabetes to emerging diseases.</p>
-  <p>I currently work in translational medicine, where the goal is to connect molecular understanding to real-world biology and human health.</p>
-  <p>Alongside research, I have spent many years teaching molecular biology and communicating science to broader audiences. Over time, this has led to a simple realization:</p>
-  <p><strong>Biology is not as complicated as it first appears.</strong></p>
-</div>
+      <div class="cta">→ Biweekly newsletter (every second week)</div>
+    </div>
+  </header>
 
-<div class="section">
-  <h2>What This Is About</h2>
-  <div class="card">
-    <p>We tend to think of life as overwhelmingly complex.</p>
-    <p>Trillions of cells. Billions of interactions. Constant motion.</p>
-    <p>But when we look closely, much of this complexity follows a small set of simple physical rules:</p>
-    <ul>
-      <li>Opposite charges attract</li>
-      <li>Like charges repel</li>
-      <li>Two things cannot occupy the same space</li>
-    </ul>
-    <p>From these simple constraints emerge chains of interactions—one event triggering the next.</p>
-    <p><em>Like dominoes.</em></p>
-    <p>This is the perspective I explore here: how simple rules give rise to the complexity of life.</p>
-  </div>
-</div>
+  <main class="container">
 
-<div class="section">
-  <h2>Writing</h2>
-  <div class="card">
-    <p>Short essays explaining biology from the inside out.</p>
-    <p><strong>How does that work?</strong></p>
-    <ul>
-      <li>How a virus takes over your cells</li>
-      <li>What happens inside your body in one second</li>
-      <li>Why proteins fold so fast</li>
-      <li>How cells make decisions</li>
-    </ul>
-    <p><a href="#">→ Read past essays</a></p>
-  </div>
-</div>
+    <section class="section" id="about">
+      <h2>About</h2>
+      <p>I am a molecular biologist with nearly two decades of experience studying how life works at the molecular level.</p>
+      <p>I received my PhD in medical science from the Karolinska Institute and have conducted research at institutions including the Broad Institute of MIT and Harvard, and the University of Copenhagen. My work has focused on molecular and cellular biology, with applications ranging from cancer and diabetes to emerging diseases.</p>
+      <p>I currently work in translational medicine, where the goal is to connect molecular understanding to real-world biology and human health.</p>
+      <p>Alongside research, I have spent many years teaching molecular biology and communicating science to broader audiences. Over time, this has led to a simple realization:</p>
+      <p><strong>Biology is not as complicated as it first appears.</strong></p>
+    </section>
 
-<div class="section">
-  <h2>Newsletter</h2>
-  <div class="card newsletter">
-    <p>Every second week, I send a short essay exploring how something in biology works.</p>
-    <p>Each piece takes a few minutes to read—and aims to leave you with a clearer understanding of how life works.</p>
-    <input type="email" placeholder="Your email">
-    <button>Subscribe</button>
-  </div>
-</div>
+    <section class="section" id="core-idea">
+      <h2>What This Is About</h2>
+      <div class="card">
+        <p>We tend to think of life as overwhelmingly complex.</p>
+        <p>Trillions of cells. Billions of interactions. Constant motion.</p>
+        <p>But when we look closely, much of this complexity follows a small set of simple physical rules:</p>
+        <ul>
+          <li>Opposite charges attract</li>
+          <li>Like charges repel</li>
+          <li>Two things cannot occupy the same space</li>
+        </ul>
+        <p>These rules govern how molecules behave inside every cell.</p>
+        <p>From these simple constraints emerge chains of interactions—one event triggering the next.</p>
+        <p><em>Like dominoes.</em></p>
+        <p>This is the perspective I explore here:</p>
+        <p><strong>How simple rules give rise to the complexity of life.</strong></p>
+      </div>
+    </section>
 
-<div class="section">
-  <h2>How I Use AI</h2>
-  <div class="card">
-    <p>I use AI tools as part of my writing process. They help with structuring ideas, improving clarity, and refining language.</p>
-    <p>All ideas, interpretations, and scientific content are my own, and everything is reviewed carefully before publication.</p>
-    <p><strong>AI is a tool. The thinking is human.</strong></p>
-  </div>
-</div>
+    <section class="section" id="writing">
+      <h2>Writing</h2>
+      <div class="card">
+        <p>Short essays explaining biology from the inside out.</p>
+        <p>Each piece starts with a simple question:</p>
+        <p><strong>How does that work?</strong></p>
+        <ul>
+          <li>How a virus takes over your cells</li>
+          <li>What happens inside your body in one second</li>
+          <li>Why proteins fold so fast</li>
+          <li>How cells make decisions</li>
+        </ul>
+        <p>More essays will appear here.</p>
+        <p><a href="#">→ Read past essays</a></p>
+      </div>
+    </section>
 
-<div class="section">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
-</div>
+    <section class="section" id="newsletter">
+      <h2>Newsletter</h2>
+      <div class="newsletter-box">
+        <p>Every second week, I send a short essay exploring how something in biology works.</p>
+        <p>These essays are written for a general audience, but grounded in real science.</p>
+        <p>They follow a simple idea:</p>
+        <p>Start with something familiar. Follow the chain of events. Understand what is actually happening.</p>
+        <p>Each piece takes a few minutes to read—and aims to leave you with a clearer understanding of how life works.</p>
 
-</div>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" />
+          <button type="button">Subscribe</button>
+        </form>
+      </div>
+    </section>
 
-<footer>
-  <p>Understanding how life works is, ultimately, a way of understanding ourselves.</p>
-</footer>
+    <section class="section" id="ai">
+      <h2>How I Use AI</h2>
+      <div class="card">
+        <p>I use AI tools as part of my writing process.</p>
+        <p>They help with structuring ideas, improving clarity, and refining language.</p>
+        <p>All ideas, main language, interpretations, and scientific content are my own, and everything is reviewed carefully before publication.</p>
+        <p><strong>AI is a tool. The thinking is human.</strong></p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <p>For inquiries, collaborations, or speaking:</p>
+      <p><a href="mailto:your@email.com">your@email.com</a></p>
+      <p>You can also follow along on social platforms as I begin publishing regularly.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Understanding how life works is, ultimately, a way of understanding ourselves.</p>
+  </footer>
 
 </body>
 </html>
