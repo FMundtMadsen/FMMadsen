@@ -15,6 +15,10 @@
   --accent: #ff4da6;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -50,6 +54,11 @@ body {
   color: var(--text);
 }
 
+.sidebar a.active {
+  color: white;
+  font-weight: 600;
+}
+
 /* Main content */
 .content {
   margin-left: 240px;
@@ -59,6 +68,11 @@ body {
 
 /* Hero */
 .hero {
+  min-height: 100vh;
+  padding: 200px 20px 140px 20px;
+  background:
+    linear-gradient(rgba(5,7,13,0.5), rgba(5,7,13,0.8)),
+    url('images/banner.png') center/cover no-repeat;
   margin-bottom: 80px;
 }
 
@@ -73,9 +87,17 @@ body {
   max-width: 600px;
 }
 
-/* Sections */
+/* Sections (fade-in) */
 .section {
   margin-bottom: 70px;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.6s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section h2 {
@@ -136,13 +158,7 @@ footer {
 <!-- Main -->
 <div class="content">
 
-<div id="hero" class="hero" style=min-height: 100vh;"
-  background: 
-    linear-gradient(rgba(5,7,13,0.5), rgba(5,7,13,0.8)),
-    url('images/banner.png') center/cover no-repeat;
-  padding: 200px 20px 140px 20px;
-">
-
+<div id="hero" class="hero">
   <h1>Filip M. Madsen, PhD</h1>
 
   <p>Molecular biologist explaining how life works—one idea at a time.</p>
@@ -212,6 +228,32 @@ footer {
 
 </div>
 </div>
+
+<!-- JAVASCRIPT -->
+<script>
+const sections = document.querySelectorAll(".section");
+const navLinks = document.querySelectorAll(".sidebar a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 150;
+
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute("id");
+      section.classList.add("visible");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
