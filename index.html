@@ -62,19 +62,29 @@ body {
 /* Main */
 .content {
   margin-left: 240px;
-  max-width: 720px;
+  max-width: 900px;
   padding: 60px 20px;
 }
 
-/* Hero (FIXED) */
+/* HERO (FIXED PROPERLY) */
 .hero {
   min-height: 60vh;
   padding: 120px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
   background:
-    linear-gradient(rgba(5,7,13,0.4), rgba(5,7,13,0.7)),
+    linear-gradient(rgba(5,7,13,0.35), rgba(5,7,13,0.65)),
     url('images/banner.png') center/contain no-repeat;
+
   background-color: #05070d;
   margin-bottom: 80px;
+}
+
+/* Text block inside hero */
+.hero-content {
+  max-width: 500px;
 }
 
 .hero h1 {
@@ -85,7 +95,6 @@ body {
 
 .hero p {
   margin-top: 20px;
-  max-width: 600px;
 }
 
 /* Sections (fade-in) */
@@ -160,11 +169,19 @@ footer {
 <div class="content">
 
 <div id="hero" class="hero">
-  <h1>Filip M. Madsen, PhD</h1>
-  <p>Molecular biologist explaining how life works—one idea at a time.</p>
-  <p>Biology is extraordinarily complex. Yet much of it follows a few simple rules.</p>
-  <p>I write short essays that open the “black box” of life—from everyday experiences to the molecular level.</p>
-  <p class="accent">→ Biweekly newsletter (every second week)</p>
+  <div class="hero-content">
+
+    <h1>Filip M. Madsen, PhD</h1>
+
+    <p>Molecular biologist explaining how life works—one idea at a time.</p>
+
+    <p>Biology is extraordinarily complex. Yet much of it follows a few simple rules.</p>
+
+    <p>I write short essays that open the “black box” of life—from everyday experiences to the molecular level.</p>
+
+    <p class="accent">→ Biweekly newsletter (every second week)</p>
+
+  </div>
 </div>
 
 <div id="about" class="section">
@@ -177,13 +194,13 @@ footer {
 
 <div id="idea" class="section">
   <h2>What This Is About</h2>
-  <p>We tend to think of life as overwhelmingly complex.</p>
+  <p>We tend to think of life as overwhelmingly complex. Yet it cannot escape three simple physical rules:</p>
   <ul>
     <li>Opposite charges attract</li>
     <li>Like charges repel</li>
     <li>Two things cannot occupy the same space</li>
   </ul>
-  <p><em>Like dominoes.</em></p>
+  <p><em>And like dominoes, biological processes unfold one piece at a time.</em></p>
 </div>
 
 <div id="writing" class="section">
@@ -232,11 +249,11 @@ window.addEventListener("scroll", () => {
   let current = "";
 
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - window.innerHeight / 1.2;
+    const rect = section.getBoundingClientRect();
 
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute("id");
+    if (rect.top < window.innerHeight * 0.75) {
       section.classList.add("visible");
+      current = section.getAttribute("id");
     }
   });
 
