@@ -59,24 +59,26 @@ body {
   font-weight: 600;
 }
 
-/* Main content */
+/* Main */
 .content {
   margin-left: 240px;
   max-width: 720px;
   padding: 60px 20px;
 }
 
-/* Hero */
+/* Hero (FIXED) */
 .hero {
-  padding: 200px 20px 140px 20px;
+  min-height: 60vh;
+  padding: 120px 20px;
   background:
-    linear-gradient(rgba(5,7,13,0.5), rgba(5,7,13,0.8)),
-    url('images/banner.png') center/cover no-repeat;
+    linear-gradient(rgba(5,7,13,0.4), rgba(5,7,13,0.7)),
+    url('images/banner.png') center/contain no-repeat;
+  background-color: #05070d;
   margin-bottom: 80px;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   font-weight: 700;
   margin: 0;
 }
@@ -108,7 +110,7 @@ ul {
   padding-left: 20px;
 }
 
-/* Accent links */
+/* Accent */
 .accent {
   color: var(--accent);
 }
@@ -154,18 +156,14 @@ footer {
   <a href="#contact">Contact</a>
 </div>
 
-<!-- Main -->
+<!-- Content -->
 <div class="content">
 
 <div id="hero" class="hero">
   <h1>Filip M. Madsen, PhD</h1>
-
   <p>Molecular biologist explaining how life works—one idea at a time.</p>
-
   <p>Biology is extraordinarily complex. Yet much of it follows a few simple rules.</p>
-
   <p>I write short essays that open the “black box” of life—from everyday experiences to the molecular level.</p>
-
   <p class="accent">→ Biweekly newsletter (every second week)</p>
 </div>
 
@@ -197,21 +195,12 @@ footer {
     <li>Why proteins fold so fast</li>
     <li>How cells make decisions</li>
   </ul>
-
   <p><a href="#" class="accent">→ Read past essays</a></p>
 </div>
 
 <div id="newsletter" class="section">
   <h2>Newsletter</h2>
   <p>Every second week, I send a short essay exploring how something in biology works.</p>
-
-  <div id="about" class="section">
-  <h2>Use of AI</h2>
-<p>I use AI tools as part of my writing process, primarily for structuring ideas, refining language, and improving clarity.</p>
-<p>The core ideas, explanations, and most of the writing are my own, grounded in my scientific training and experience.</p>
-<p>AI is a tool. The thinking remains human.</p>
-</div>
-
   <input type="email" placeholder="Your email">
   <button>Subscribe</button>
 </div>
@@ -219,7 +208,7 @@ footer {
 <div id="ai" class="section">
   <h2>How I Use AI</h2>
   <p>I use AI tools as part of my writing process, primarily for structuring ideas, refining language, and improving clarity.</p>
-  <p>Most of the text, ideas, and explanations are my own and based on my scientific training and experience.</p>
+  <p>The core ideas, explanations, and most of the writing are my own, grounded in my scientific training and experience.</p>
   <p>AI is a tool. The thinking remains human.</p>
 </div>
 
@@ -235,7 +224,6 @@ footer {
 </div>
 </div>
 
-<!-- JAVASCRIPT -->
 <script>
 const sections = document.querySelectorAll(".section");
 const navLinks = document.querySelectorAll(".sidebar a");
