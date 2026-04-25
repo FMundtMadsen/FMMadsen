@@ -247,15 +247,13 @@ footer {
 const sections = document.querySelectorAll(".section");
 const navLinks = document.querySelectorAll(".sidebar a");
 
- const rect = section.getBoundingClientRect();
+window.addEventListener("scroll", () => {
+  let current = "";
 
-    // Fade-in (keep this)
-    if (rect.top < window.innerHeight * 0.85) {
-      section.classList.add("visible");
-    }
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 220;
 
-    // Highlight logic (FIXED)
-    if (rect.top <= 200 && rect.bottom >= 200) {
+    if (window.scrollY >= sectionTop) {
       current = section.getAttribute("id");
     }
   });
