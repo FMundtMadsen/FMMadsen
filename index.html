@@ -25,12 +25,33 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.7;
 }
 
-/* Layout */
-.wrapper {
-  display: flex;
+/* HERO (FULL SCREEN) */
+.hero {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background: url('images/hero.png') center/cover no-repeat;
+}
+
+/* Button */
+.hero-button {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 14px 24px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.hero-button:hover {
+  background: var(--accent);
+  color: black;
 }
 
 /* Sidebar */
@@ -42,6 +63,7 @@ body {
   height: 100vh;
   padding: 0 20px;
   font-size: 0.9rem;
+  z-index: 10;
 }
 
 .sidebar a {
@@ -51,27 +73,36 @@ body {
   margin-bottom: 12px;
 }
 
-.sidebar a:hover {
-  color: var(--text);
-}
-
 .sidebar a.active {
   color: var(--accent);
   font-weight: 600;
 }
 
-/* Main */
+/* Content */
 .content {
   margin-left: 240px;
   max-width: 720px;
-  padding: 60px 20px;
-
-  position: relative;
-  margin-top: -80px;
-  padding-top: 100px;
-  background: linear-gradient(to bottom, transparent, #05070d 120px);
+  padding: 100px 20px 60px 20px;
+  line-height: 1.7;
 }
 
+/* Sections */
+.section {
+  margin-bottom: 70px;
+}
+
+.accent {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Footer */
+footer {
+  margin-top: 80px;
+  color: var(--muted);
+}
+
+/* Bottom banner */
 .bottom-banner {
   height: 60vh;
   background:
@@ -80,122 +111,15 @@ body {
   background-color: #05070d;
   margin-top: 10px;
 }
-
-/* HERO (FIXED PROPERLY) */
-.hero {
-  height: 100vh;
-  width: 100%;
-  position: relative;
-
-  background: url('images/hero.png') center/cover no-repeat;
-}
-
-/* Text block inside hero */
-.hero-content {
-  max-width: 500px;
-}
-
-.hero h1 {
-  font-size: 3.2rem;
-  font-weight: 700;
-  margin: 0;
-  white-space: nowrap;
-}
-
-.hero p {
-  margin-top: 20px;
-}
-
-/* Sections (fade-in) */
-.section {
-  margin-bottom: 70px;
-  opacity: 1;
-  transform: translateY(0px);
-  transition: all 0.6s ease;
-}
-
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-/* Accent */
-.accent {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-/* Newsletter */
-input {
-  padding: 10px;
-  border: none;
-  background: #111;
-  color: white;
-  margin-top: 10px;
-}
-
-button {
-  padding: 10px 15px;
-  border: none;
-  background: var(--accent);
-  color: white;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-/* Footer */
-footer {
-  margin-top: 80px;
-  color: var(--muted);
-}
-.hero-content {
-  max-width: 700px;
-  z-index: 2;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInHero 1.2s ease forwards;
-  animation-delay: 0.3s;
-}
-
-@keyframes fadeInHero {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-button {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  padding: 14px 24px;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.9rem;
-  background: transparent;
-  transition: 0.2s;
-}
-
-.hero-button:hover {
-  background: var(--accent);
-  color: black;
-}
 </style>
 </head>
 
 <body>
+
+<!-- HERO FIRST (OUTSIDE CONTENT) -->
+<div id="hero" class="hero">
+  <a href="#about" class="hero-button">Explore the idea ↓</a>
+</div>
 
 <div class="wrapper">
 
@@ -213,12 +137,7 @@ footer {
 <!-- Content -->
 <div class="content">
 
-<div id="hero" class="hero">
-  <a href="#about" class="hero-button">Explore the idea ↓</a>
-</div>
-
 <div id="about" class="section">
-
   <h1>Filip M. Madsen, <span class="accent">PhD</span></h1>
 
   <p>Molecular biologist explaining how life works—one idea at a time.</p>
@@ -228,66 +147,57 @@ footer {
   <p>I write short essays that open the “black box” of life—from everyday experiences down to the molecular level.</p>
 
   <p class="accent">→ Biweekly newsletter (every second week)</p>
-  
+
   <h2>About</h2>
   <p>I'm a molecular biologist with nearly two decades of experience studying how life works at the smallest level.</p>
-  <p>I received my PhD in medical science from the Karolinska Institute, followed by a postdoc at the Broad Institute of MIT and Harvard, and a senior scientist posotion at the University of Copenhagen.</p>
-  <p>I currently work in as a scientific director in experimental and translational medicine, connecting molecular understanding to real-world biology and human health.</p>
+  <p>I received my PhD in medical science from the Karolinska Institute, followed by a postdoc at the Broad Institute of MIT and Harvard, and a senior scientist position at the University of Copenhagen.</p>
+  <p>I currently work in experimental and translational medicine, connecting molecular understanding to real-world biology and human health.</p>
 </div>
 
 <div id="idea" class="section">
   <h2>Core Idea</h2>
-  <p>We tend to think of life as overwhelmingly complex, and on the grand scale is sure looks like it. Yet, on the smallest level, it cannot escape three (extremely) simple physical rules:</p>
+  <p>We tend to think of life as overwhelmingly complex. Yet at the smallest level, it cannot escape three simple physical rules:</p>
   <ul>
     <li>Opposite charges attract</li>
     <li>Like charges repel</li>
     <li>Two things cannot occupy the same space</li>
   </ul>
-  <p><em>Following these rules, molecular machines and biological processes—like dominoes—unfold one piece at a time.</em></p>
 </div>
 
 <div id="writing" class="section">
   <h2>Writing</h2>
-  <p><strong>The core tenant of my writing, wrestle with the question: How does that work?</strong></p>
   <ul>
     <li>How a virus takes over your cells</li>
     <li>What happens inside your body in one second</li>
     <li>Why proteins fold so fast</li>
     <li>How cells make decisions</li>
   </ul>
-  <p>To answer these questions, I write short, illustrated assays; simple, digestable, and highliting the main concepts.</p>
   <p><a href="#" class="accent">→ Read past essays</a></p>
 </div>
 
 <div id="newsletter" class="section">
   <h2>Newsletter</h2>
-  <p>Every second week, I send a long(er) essay exploring how something in biology works.</p>
   <input type="email" placeholder="Your email">
   <button>Subscribe</button>
 </div>
 
 <div id="ai" class="section">
   <h2>How I Use AI</h2>
-  <p>I use AI tools as part of my writing process, primarily for structuring ideas, summarizing my texts and for line-editing.</p>
-  <p>Additionally, AI creates my images. However, they are based on my own work. Please see my (!) image repository <a href="gallery.html" target="_blank" rel="noopener noreferrer" class="accent">here</a>.</p>
-  <p>The core ideas, explanations, and majority of the writing are my own, grounded in my scientific training and experience.</p>
-  <p>AI is a tool. The thinking remains human.</p>
+  <p>Most ideas and writing are my own. AI assists with editing and visuals.</p>
 </div>
 
-<div id="contact" class="section" style="display: flex; align-items: center; gap: 40px;">
-
+<div id="contact" class="section" style="display:flex;align-items:center;gap:40px;">
   <div>
     <h2>Contact</h2>
     <p class="accent">filipmundt@gmail.com</p>
   </div>
-
-  <img src="images/me.png" alt="" style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%;">
-
+  <img src="images/me.png" style="width:160px;height:160px;border-radius:50%;">
 </div>
 
 <footer>
   <p>Understanding how life works is, ultimately, a way of understanding ourselves.</p>
 </footer>
+
 <div class="bottom-banner"></div>
 
 </div>
@@ -302,7 +212,6 @@ window.addEventListener("scroll", () => {
 
   sections.forEach(section => {
     const sectionTop = section.offsetTop - 220;
-
     if (window.scrollY >= sectionTop) {
       current = section.getAttribute("id");
     }
