@@ -63,24 +63,35 @@ body {
 /* Main */
 .content {
   margin-left: 240px;
-  max-width: 900px;
+  max-width: 720px;
   padding: 60px 20px;
+
+  position: relative;
+  margin-top: -80px;
+  padding-top: 100px;
+  background: linear-gradient(to bottom, transparent, #05070d 120px);
+}
+
+.bottom-banner {
+  height: 60vh;
+  background:
+    linear-gradient(rgba(5,7,13,0.7), rgba(5,7,13,1)),
+    url('images/banner.png') center/cover no-repeat;
+  margin-top: 80px;
 }
 
 /* HERO (FIXED PROPERLY) */
 .hero {
-  min-height: 60vh;
-  padding: 120px 20px;
+  position: relative;
+  height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  padding: 0 40px;
+  overflow: hidden;
 
   background:
-    linear-gradient(rgba(5,7,13,0.35), rgba(5,7,13,0.65)),
-    url('images/banner.png') center/contain no-repeat;
-
-  background-color: #05070d;
-  margin-bottom: 80px;
+    linear-gradient(rgba(5,7,13,0.4), rgba(5,7,13,0.9)),
+    url('images/hero.png') center/cover no-repeat;
 }
 
 /* Text block inside hero */
@@ -150,6 +161,38 @@ footer {
   margin-top: 80px;
   color: var(--muted);
 }
+.hero-content {
+  max-width: 700px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInHero 1.2s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInHero {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-button {
+  position: absolute;
+  bottom: 80px;
+  left: 40px;
+  padding: 12px 20px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.hero-button:hover {
+  background: var(--accent);
+  color: black;
+}
 </style>
 </head>
 
@@ -174,7 +217,7 @@ footer {
 <div id="hero" class="hero">
   <div class="hero-content">
 
-    <h1>Filip M. Madsen, PhD</h1>
+    <h1>Filip M. Madsen, <span class="accent">PhD</span></h1>
 
     <p>Molecular biologist explaining how life works—one idea at a time.</p>
 
@@ -185,6 +228,7 @@ footer {
     <p class="accent">→ Biweekly newsletter (every second week)</p>
 
   </div>
+  <a href="#about" class="hero-button">Explore the idea ↓</a>
 </div>
 
 <div id="about" class="section">
@@ -247,6 +291,7 @@ footer {
 <footer>
   <p>Understanding how life works is, ultimately, a way of understanding ourselves.</p>
 </footer>
+<div class="bottom-banner"></div>
 
 </div>
 </div>
