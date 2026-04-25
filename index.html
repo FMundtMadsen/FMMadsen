@@ -83,16 +83,11 @@ body {
 
 /* HERO (FIXED PROPERLY) */
 .hero {
-  position: relative;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 0 40px;
-  overflow: hidden;
+  width: 100%;
+  position: relative;
 
-  background:
-    linear-gradient(rgba(5,7,13,0.4), rgba(5,7,13,0.9)),
-    url('images/hero.png') center/cover no-repeat;
+  background: url('images/hero.png') center/cover no-repeat;
 }
 
 /* Text block inside hero */
@@ -180,13 +175,16 @@ footer {
 
 .hero-button {
   position: absolute;
-  bottom: 80px;
-  left: 40px;
-  padding: 12px 20px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 14px 24px;
   border: 1px solid var(--accent);
   color: var(--accent);
   text-decoration: none;
   font-size: 0.9rem;
+  background: transparent;
   transition: 0.2s;
 }
 
@@ -216,23 +214,21 @@ footer {
 <div class="content">
 
 <div id="hero" class="hero">
-  <div class="hero-content">
-
-    <h1>Filip M. Madsen, <span class="accent">PhD</span></h1>
-
-    <p>Molecular biologist explaining how life works—one idea at a time.</p>
-
-    <p>Biology is extraordinarily complex. Yet much of it follows a few simple rules.</p>
-
-    <p>I write short essays that open the “black box” of life—from everyday experiences down to the molecular level.</p>
-
-    <p class="accent">→ Biweekly newsletter (every second week)</p>
-
-  </div>
   <a href="#about" class="hero-button">Explore the idea ↓</a>
 </div>
 
 <div id="about" class="section">
+
+  <h1>Filip M. Madsen, <span class="accent">PhD</span></h1>
+
+  <p>Molecular biologist explaining how life works—one idea at a time.</p>
+
+  <p>Biology is extraordinarily complex. Yet much of it follows a few simple rules.</p>
+
+  <p>I write short essays that open the “black box” of life—from everyday experiences down to the molecular level.</p>
+
+  <p class="accent">→ Biweekly newsletter (every second week)</p>
+  
   <h2>About</h2>
   <p>I'm a molecular biologist with nearly two decades of experience studying how life works at the smallest level.</p>
   <p>I received my PhD in medical science from the Karolinska Institute, followed by a postdoc at the Broad Institute of MIT and Harvard, and a senior scientist posotion at the University of Copenhagen.</p>
