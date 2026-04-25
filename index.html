@@ -188,7 +188,7 @@ footer {
   <h2>About</h2>
   <p>I'm a molecular biologist with nearly two decades of experience studying how life works at the smallest level.</p>
   <p>I received my PhD in medical science from the Karolinska Institute, followed by a postdoc at the Broad Institute of MIT and Harvard, and a senior scientist posotion at the University of Copenhagen.</p>
-  <p>I currently work in as a scientif director in experimental and translational medicine, connecting molecular understanding to real-world biology and human health.</p>
+  <p>I currently work in as a scientific director in experimental and translational medicine, connecting molecular understanding to real-world biology and human health.</p>
 </div>
 
 <div id="idea" class="section">
@@ -212,7 +212,7 @@ footer {
     <li>Why proteins fold so fast</li>
     <li>How cells make decisions</li>
   </ul>
-  <p>To answer these questions, I write short, illustrated assays. Simple, digestable, and highliting the main concepts.</p>
+  <p>To answer these questions, I write short, illustrated assays; simple, digestable, and highliting the main concepts.</p>
   <p><a href="#" class="accent">→ Read past essays</a></p>
 </div>
 
@@ -247,14 +247,15 @@ footer {
 const sections = document.querySelectorAll(".section");
 const navLinks = document.querySelectorAll(".sidebar a");
 
-window.addEventListener("scroll", () => {
-  let current = "";
+ const rect = section.getBoundingClientRect();
 
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-
-    if (rect.top < window.innerHeight * 0.75) {
+    // Fade-in (keep this)
+    if (rect.top < window.innerHeight * 0.85) {
       section.classList.add("visible");
+    }
+
+    // Highlight logic (FIXED)
+    if (rect.top <= 200 && rect.bottom >= 200) {
       current = section.getAttribute("id");
     }
   });
