@@ -5,46 +5,96 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Essays</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
+:root {
+  --bg: #05070d;
+  --text: #ffffff;
+  --muted: #a0a0a0;
+  --accent: #ff4da6;
+}
+
 body {
   margin: 0;
-  background: #05070d;
-  color: white;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
+/* Container */
 .container {
-  max-width: 700px;
+  max-width: 760px;
   margin: auto;
-  padding: 60px 20px;
+  padding: 80px 20px 100px;
 }
 
+/* Title */
 h1 {
-  margin-bottom: 50px;
-}
-
-/* Each essay */
-.essay {
-  margin-bottom: 50px;
-}
-
-/* Pink title */
-.essay a {
-  color: #ff4da6;
-  text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 2.2rem;
   font-weight: 600;
+  margin-bottom: 60px;
+  letter-spacing: -0.02em;
 }
 
+/* Essay list */
+.essay {
+  padding: 26px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Remove last divider */
+.essay:last-child {
+  border-bottom: none;
+}
+
+/* Title */
+.essay a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: 0.2s ease;
+}
+
+/* Hover effect (premium subtle) */
 .essay a:hover {
-  text-decoration: underline;
+  opacity: 0.7;
 }
 
-/* White description */
+/* Description */
 .description {
-  color: #cccccc;
-  margin-top: 6px;
+  margin-top: 8px;
+  color: #c7c7c7;
+  font-size: 0.95rem;
   line-height: 1.6;
+  max-width: 520px;
+}
+
+/* Subtle spacing rhythm */
+.essay + .essay {
+  margin-top: 10px;
+}
+
+/* Mobile polish */
+@media (max-width: 600px) {
+  .container {
+    padding: 60px 20px 80px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+
+  .essay a {
+    font-size: 1.15rem;
+  }
 }
 </style>
 </head>
@@ -53,25 +103,29 @@ h1 {
 
 <div class="container">
 
-<h1>Essays</h1>
-  
+  <h1>Past Essays</h1>
+
+  <p style="color:#a0a0a0; max-width:500px; margin-bottom:50px;">
+  Short essays opening the black box of life.
+  </p>
+
   <div class="essay">
-<a href="essays/Why%20You%20Need%20Oxygen%20to%20Stay%20Alive.png" target="_blank">
-  Why Oxygen Matters
-</a>
-  <div class="description">
-    How oxygen powers life at the molecular level.
+    <a href="essays/Why%20You%20Need%20Oxygen%20to%20Stay%20Alive.png" target="_blank">
+      Why Oxygen Matters
+    </a>
+    <div class="description">
+      How oxygen powers life at the molecular level.
+    </div>
   </div>
-</div>
-  
-<div class="essay">
-  <a href="essays/virus.png" target="_blank">
-    How Viruses Take Over Cells
-  </a>
-  <div class="description">
-    A simple breakdown of viral takeover inside your body.
+
+  <div class="essay">
+    <a href="essays/virus.png" target="_blank">
+      How Viruses Take Over Cells
+    </a>
+    <div class="description">
+      A simple breakdown of viral takeover inside your body.
+    </div>
   </div>
-</div>
 
 </div>
 
