@@ -1,12 +1,15 @@
-<!-- update -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Filip M. Madsen, PhD</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+  rel="stylesheet"
+>
 
 <style>
 :root {
@@ -22,7 +25,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -32,12 +35,13 @@ body {
 }
 
 /* HERO */
+
 .hero {
   height: 85vh;
   width: 100%;
   position: relative;
-  background: url('images/hero.png') center/contain no-repeat;
-  background-color: #05070d;
+  background: url("images/hero.png") center / contain no-repeat;
+  background-color: var(--bg);
 }
 
 .hero-button {
@@ -45,32 +49,37 @@ body {
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   padding: 14px 24px;
   border: 1px solid var(--accent);
   color: var(--accent);
   text-decoration: none;
   font-size: 0.9rem;
-  background: #05070d;
+  background: var(--bg);
 }
 
 .hero-button:hover {
   background: var(--accent);
-  color: black;
+  color: #000000;
 }
 
-/* Layout */
+/* LAYOUT */
+
 .wrapper {
   display: flex;
 }
 
-/* Sidebar */
+/* SIDEBAR */
+
 .sidebar {
   position: fixed;
   left: 0;
   top: 200px;
+
   width: 220px;
   height: 100vh;
   padding: 0 20px;
+
   font-size: 0.9rem;
   z-index: 10;
 }
@@ -87,14 +96,16 @@ body {
   font-weight: 600;
 }
 
-/* Content */
+/* CONTENT */
+
 .content {
   margin-left: 240px;
   max-width: 720px;
-  padding: 100px 20px 60px 20px;
+  padding: 100px 20px 60px;
 }
 
-/* Sections */
+/* SECTIONS */
+
 .section {
   margin-bottom: 70px;
 }
@@ -104,25 +115,42 @@ body {
   text-decoration: none;
 }
 
-/* Footer */
+.domino-sequence {
+  margin: 30px 0;
+  color: var(--accent);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+/* FOOTER */
+
 footer {
   margin-top: 10px;
   color: var(--muted);
 }
 
-/* Bottom banner */
+/* BOTTOM BANNER */
+
 .bottom-banner {
   height: 45vh;
+
   background:
-    linear-gradient(rgba(5,7,13,0.0), rgba(5,7,13,0.2)),
-    url('images/banner.png') center/contain no-repeat;
-  background-color: #05070d;
+    linear-gradient(rgba(5, 7, 13, 0), rgba(5, 7, 13, 0.2)),
+    url("images/banner.png") center / contain no-repeat;
+
+  background-color: var(--bg);
   margin-top: 0;
 }
 
-/* ===== MOBILE (PREMIUM) ===== */
-@media (max-width: 768px) {
+/* MOBILE */
 
+@media (max-width: 768px) {
   .sidebar {
     display: none;
   }
@@ -137,7 +165,7 @@ footer {
     height: 55vh;
     background-size: contain;
     background-position: center;
-    background-color: #05070d;
+    background-color: var(--bg);
   }
 
   .hero-button {
@@ -162,6 +190,11 @@ footer {
     color: #d6d6d6;
   }
 
+  .domino-sequence {
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+  }
+
   #contact {
     flex-direction: column;
     align-items: flex-start;
@@ -174,6 +207,7 @@ footer {
 
   input {
     width: 100%;
+    box-sizing: border-box;
   }
 
   button {
@@ -184,200 +218,367 @@ footer {
   .bottom-banner {
     height: 35vh;
   }
-
 }
-
 </style>
 </head>
 
 <body>
 
 <!-- HERO -->
+
 <div id="hero" class="hero">
   <a href="#about" class="hero-button">Explore the idea ↓</a>
 </div>
 
 <div class="wrapper">
 
-<!-- Sidebar -->
-<div class="sidebar">
-  <a href="#about">About</a>
-  <a href="#idea">Core Idea</a>
-  <a href="#writing">Essays</a>
-  <a href="#signup">Sign up...</a>
-  <a href="#ai">AI</a>
-  <a href="#contact">Contact</a>
-</div>
+  <!-- SIDEBAR -->
 
-<!-- Content -->
-<div class="content">
+  <nav class="sidebar" aria-label="Main navigation">
+    <a href="#about">About</a>
+    <a href="#idea">Core Idea</a>
+    <a href="#ai">AI</a>
 
-<div id="about" class="section">
+    <!-- Hidden until SHOW_THREE_RULES is changed to true -->
+    <a
+      href="#three-rules"
+      id="three-rules-nav"
+      class="is-hidden"
+    >
+      Three Rules
+    </a>
 
-  <h1><span class="accent">Filip M. Madsen, </span>PhD</h1>
+    <a href="#writing">Essays</a>
+    <a href="#signup">Sign up...</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  <p>I'm a molecular biologist explaining how life works—one idea at a time.</p>
+  <!-- CONTENT -->
 
-<p>Biology is extraordinarily complex. Yet much of it follows a few surprisingly simple rules.</p>
+  <main class="content">
 
-<p>Through short essays, I open the “black box” of life—from everyday experiences down to the molecular machinery inside our cells.</p>
+    <!-- ABOUT -->
 
-<p>University-level biology. Explained in a way that feels intuitive and easy to understand.</p>
+    <section id="about" class="section">
+      <h1>
+        <span class="accent">Filip M. Madsen, </span>PhD
+      </h1>
 
-<p>I’ve spent nearly two decades studying life at its smallest scales, with a PhD from the Karolinska Institute, postdoctoral research at the Broad Institute of MIT and Harvard, and roles at the University of Copenhagen and Novo Nordisk Foundation Center for Protein Research.</p>
-</div>
+      <p>
+        I'm a molecular biologist explaining how life works—one idea at a time.
+      </p>
 
-<div id="idea" class="section">
-  <h2>Core Idea</h2>
-  <p>We tend to think of life as overwhelmingly complex, and on the grand scale it sure looks like it. Yet, on the smallest level, it cannot escape three (extremely) simple physical rules:</p>
-  <ul>
-    <li>Opposite charges attract</li>
-    <li>Like charges repel</li>
-    <li>Two things cannot occupy the same space</li>
-  </ul>
-  <p><em>Following these rules, molecular machines and biological processes—like dominoes—unfold one piece at a time.</em></p>
-</div>https://github.com/FMundtMadsen/FMMadsen/blob/main/index.html
+      <p>
+        Biology is extraordinarily complex. Yet much of it becomes easier to
+        understand when we follow what happens one molecular step at a time.
+      </p>
 
-<div id="writing" class="section">
-  <h2>Essays</h2>
-  <p><strong>The core tenant of my writing, wrestle with the question: How does that work?</strong></p>
-  <ul>
-    <li>How a virus takes over your cells</li>
-    <li>What happens inside your body in one second</li>
-    <li>Why proteins fold so fast</li>
-    <li>How cells make decisions</li>
-  </ul>
-  <p>To answer these questions, I write short, scientifically vetted, illustrated assays; simple, digestable, and highliting the main concepts.</p>
-   <a href="essays.html" target="_blank" rel="noopener noreferrer" class="accent">
-  → Read past essays
-  </a>
-</div>
+      <p>
+        Through short essays, I open the “black box” of life—from everyday
+        experiences down to the molecular machinery inside our cells.
+      </p>
 
-  
-<div id="signup" class="section">
+      <p>
+        University-level biology, explained in a way that feels intuitive and
+        easy to understand.
+      </p>
 
-<h2>Sign up...</h2>
+      <p>
+        I’ve spent nearly two decades studying life at its smallest scales,
+        with a PhD from the Karolinska Institute, postdoctoral research at the
+        Broad Institute of MIT and Harvard, and roles at the University of
+        Copenhagen and the Novo Nordisk Foundation Center for Protein Research.
+      </p>
+    </section>
 
-<p class="accent" style="margin-bottom: 40px;">
-Get irregular updates on my upcoming book 
-</p>
+    <!-- CORE IDEA -->
 
-<form
-action="https://buttondown.email/api/emails/embed-subscribe/fm_madsen"
-method="post"
-target="_blank"
-style="margin-top:20px;"
->
+    <section id="idea" class="section">
+      <h2>Core Idea</h2>
 
-<input
-type="email"
-name="email"
-placeholder="Your email"
-required
-style="
-padding:12px;
-width:260px;
-background:#111;
-border:none;
-color:white;
-border-radius:4px;
-"
->
+      <p>
+        Inside your cells, almost nothing happens all at once. One molecule
+        changes another, which changes the next.
+      </p>
 
-<button
-type="submit"
-style="
-padding:12px 18px;
-margin-left:10px;
-background:#ff4da6;
-color:white;
-border:none;
-cursor:pointer;
-border-radius:4px;
-"
->
-Join
-</button>
+      <div class="domino-sequence">
+        A → B → C → D
+      </div>
 
-</form>
+      <p>
+        Like falling dominoes, every step depends on the one before it. The
+        chain cannot simply skip from A to D.
+      </p>
 
-<p style="font-size:0.85rem;color:#888;margin-top:10px;">
-No spam. Just occasional updates as the book takes shape.
-</p>
+      <p>
+        Cells grow, move, divide, communicate and respond through countless
+        molecular chains like these. Each chain may contain different pieces,
+        but the basic logic remains the same: one event triggers the next.
+      </p>
 
-</div>
+      <p>
+        <em>
+          Molecular Dominoes follows these chains one toppled piece at a time,
+          until seemingly impossible biology begins to feel intuitive.
+        </em>
+      </p>
+    </section>
 
-<div id="ai" class="section">
-  <h2>How I Use AI</h2>
-  <p>I use AI tools mainly for line-editing and creating images.</p>
-  <p>However, the images are based on my own work. Please see my image repository <a href="gallery.html" target="_blank" rel="noopener noreferrer" class="accent">here</a>.</p>
-  <p>The core ideas, and explanations are my own, grounded in my scientific training and experience.</p>
-  <p>What you see is AI. The questionable thinking behind it is still mine.</p>
-</div>
+    <!-- AI MOVED DIRECTLY AFTER CORE IDEA -->
 
-<div id="contact" class="section" style="display: flex; align-items: center; gap: 40px;">
+    <section id="ai" class="section">
+      <h2>How I Use AI</h2>
 
-  <div>
+      <p>
+        I use AI tools mainly for line-editing, visual exploration and creating
+        images.
+      </p>
 
-    <h2>Contact</h2>
+      <p>
+        The images are developed from my own scientific ideas and direction.
+        You can see my image repository
+        <a
+          href="gallery.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="accent"
+        >
+          here
+        </a>.
+      </p>
 
-    <p class="accent">
-      <a href="mailto:filipmundt@gmail.com" class="accent">
-        filipmundt@gmail.com
+      <p>
+        The scientific concepts, explanations and final judgments are my own,
+        grounded in my training and experience as a molecular biologist.
+      </p>
+
+      <p>
+        What you see is AI-assisted. The questionable thinking behind it is
+        still mine.
+      </p>
+    </section>
+
+    <!--
+      THREE-RULES SECTION
+
+      This remains in the website code but is hidden by default.
+
+      To reactivate it later, go to the script at the bottom and change:
+
+      const SHOW_THREE_RULES = false;
+
+      to:
+
+      const SHOW_THREE_RULES = true;
+    -->
+
+    <section id="three-rules" class="section is-hidden">
+      <h2>Three Rules Behind Life</h2>
+
+      <p>
+        Life is overwhelmingly complex on the grand scale. Yet at the smallest
+        level, it cannot escape three extremely simple physical rules:
+      </p>
+
+      <ul>
+        <li>Opposite charges attract</li>
+        <li>Like charges repel</li>
+        <li>Two things cannot occupy the same space</li>
+      </ul>
+
+      <p>
+        <em>
+          Following these rules, molecular machines and biological processes
+          unfold one piece at a time.
+        </em>
+      </p>
+    </section>
+
+    <!-- ESSAYS -->
+
+    <section id="writing" class="section">
+      <h2>Essays</h2>
+
+      <p>
+        <strong>
+          The central question behind my writing is simple: How does that work?
+        </strong>
+      </p>
+
+      <ul>
+        <li>How a virus takes over your cells</li>
+        <li>What happens inside your body in one second</li>
+        <li>Why proteins fold so fast</li>
+        <li>How cells make decisions</li>
+      </ul>
+
+      <p>
+        To answer these questions, I write short, scientifically vetted and
+        illustrated essays that make the central concepts easier to see and
+        understand.
+      </p>
+
+      <a
+        href="essays.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="accent"
+      >
+        → Read past essays
       </a>
-    </p>
+    </section>
 
-    <p>
-      <a href="https://x.com/FOMMadsen"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="accent">
-        Follow on Twitter
-      </a>
-    </p>
+    <!-- SIGNUP -->
 
-    <p>
-      <a href="https://instagram.com/fommadsen/"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="accent">
-        Follow on Instagram
-      </a>
-    </p>
+    <section id="signup" class="section">
+      <h2>Sign up...</h2>
 
-    <p>
-  <a href="https://scholar.google.com/citations?user=ylwXz5EAAAAJ&hl=en"
-     target="_blank"
-     rel="noopener noreferrer"
-     class="accent">
-    Google Scholar
-  </a>
-</p>
-  </div>
+      <p class="accent" style="margin-bottom: 40px;">
+        Get irregular updates on my upcoming book
+      </p>
 
-  <img src="images/me.png"
-       alt=""
-       style="width:190px;height:190px;object-fit:cover;border-radius:50%;">
+      <form
+        action="https://buttondown.email/api/emails/embed-subscribe/fm_madsen"
+        method="post"
+        target="_blank"
+        style="margin-top: 20px;"
+      >
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email"
+          required
+          style="
+            padding: 12px;
+            width: 260px;
+            background: #111111;
+            border: none;
+            color: white;
+            border-radius: 4px;
+          "
+        >
 
-</div>
+        <button
+          type="submit"
+          style="
+            padding: 12px 18px;
+            margin-left: 10px;
+            background: #ff4da6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+          "
+        >
+          Join
+        </button>
+      </form>
 
-<footer>
-  <p>Understanding how life works is, ultimately, a way of understanding ourselves.</p>
-</footer>
+      <p style="font-size: 0.85rem; color: #888888; margin-top: 10px;">
+        No spam. Just occasional updates as the book takes shape.
+      </p>
+    </section>
 
-<div class="bottom-banner"></div>
+    <!-- CONTACT -->
 
-</div>
+    <section
+      id="contact"
+      class="section"
+      style="display: flex; align-items: center; gap: 40px;"
+    >
+      <div>
+        <h2>Contact</h2>
+
+        <p>
+          <a
+            href="mailto:filipmundt@gmail.com"
+            class="accent"
+          >
+            filipmundt@gmail.com
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://x.com/FOMMadsen"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="accent"
+          >
+            Follow on Twitter
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://instagram.com/fommadsen/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="accent"
+          >
+            Follow on Instagram
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://scholar.google.com/citations?user=ylwXz5EAAAAJ&hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="accent"
+          >
+            Google Scholar
+          </a>
+        </p>
+      </div>
+
+      <img
+        src="images/me.png"
+        alt="Filip M. Madsen"
+        style="
+          width: 190px;
+          height: 190px;
+          object-fit: cover;
+          border-radius: 50%;
+        "
+      >
+    </section>
+
+    <footer>
+      <p>
+        Understanding how life works is, ultimately, a way of understanding
+        ourselves.
+      </p>
+    </footer>
+
+    <div class="bottom-banner"></div>
+
+  </main>
 </div>
 
 <script>
-const sections = document.querySelectorAll(".section");
-const navLinks = document.querySelectorAll(".sidebar a");
+/*
+  Keep the three-rules material silent for now.
+
+  Change false to true when you want it visible again.
+*/
+const SHOW_THREE_RULES = false;
+
+const threeRulesSection = document.getElementById("three-rules");
+const threeRulesNav = document.getElementById("three-rules-nav");
+
+if (SHOW_THREE_RULES) {
+  threeRulesSection.classList.remove("is-hidden");
+  threeRulesNav.classList.remove("is-hidden");
+}
+
+const sections = document.querySelectorAll(".section:not(.is-hidden)");
+const navLinks = document.querySelectorAll(".sidebar a:not(.is-hidden)");
 
 window.addEventListener("scroll", () => {
   let current = "";
 
-  sections.forEach(section => {
+  sections.forEach((section) => {
     const sectionTop = section.offsetTop - 220;
 
     if (window.scrollY >= sectionTop) {
@@ -385,8 +586,9 @@ window.addEventListener("scroll", () => {
     }
   });
 
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     link.classList.remove("active");
+
     if (link.getAttribute("href") === "#" + current) {
       link.classList.add("active");
     }
