@@ -326,37 +326,34 @@ footer {
 
     <!-- AI MOVED DIRECTLY AFTER CORE IDEA -->
 
-    <section id="ai" class="section">
-      <h2>How I Use AI</h2>
+   <section id="ai" class="section">
+  <h2>How I Use AI</h2>
 
-      <p>
-   I use AI tools mainly for line-editing and creating images.
+  <p>
+    I use AI tools mainly for line-editing and creating images.
+  </p>
 
-However, the images are based on my own work. 
-      </p>
+  <p>
+    However, the images are based on my own work. Please see my image repository
+    <a
+      href="gallery.html"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="accent"
+    >
+      here
+    </a>.
+  </p>
 
-      <p>
-               You can see my image repository
-        <a
-          href="gallery.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="accent"
-        >
-          here
-        </a>
-      </p>
+  <p>
+    The core ideas, and explanations are my own, grounded in my scientific
+    training and experience.
+  </p>
 
-      <p>
-        The scientific concepts, explanations and final judgments are my own,
-        grounded in my training and experience as a molecular biologist.
-      </p>
-
-      <p>
-        What you see is AI-assisted. The questionable thinking behind it is
-        still mine.
-      </p>
-    </section>
+  <p>
+    What you see is AI. The questionable thinking behind it is still mine.
+  </p>
+</section>
 
     <!--
       THREE-RULES SECTION
@@ -509,16 +506,16 @@ However, the images are based on my own work.
           </a>
         </p>
 
-      #  <p>
-       #   <a
-        #    href="https://instagram.com/fommadsen/"
-         #   target="_blank"
-          #  rel="noopener noreferrer"
-           # class="accent"
-         # >
-          #  Follow on Instagram
-          #</a>
-       # </p>
+  <p id="instagram-link" class="is-hidden">
+  <a
+    href="https://instagram.com/fommadsen/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="accent"
+  >
+    Follow on Instagram
+  </a>
+</p>
 
         <p>
           <a
@@ -562,6 +559,13 @@ However, the images are based on my own work.
 
   Change false to true when you want it visible again.
 */
+  const SHOW_INSTAGRAM = false;
+
+const instagramLink = document.getElementById("instagram-link");
+
+if (SHOW_INSTAGRAM) {
+  instagramLink.classList.remove("is-hidden");
+}
 const SHOW_THREE_RULES = false;
 
 const threeRulesSection = document.getElementById("three-rules");
