@@ -69,7 +69,23 @@ body {
   text-transform: uppercase;
   margin-bottom: 14px;
 }
+.essay-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
 
+.essay-meta .essay-label {
+  margin-bottom: 0;
+}
+
+.essay-number {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
 h1 {
   font-size: clamp(2.2rem, 6vw, 4rem);
   line-height: 1.08;
@@ -193,11 +209,17 @@ h1 {
     <a href="essays.html">← Back to Past Essays</a>
   </div>
 
-  <header class="essay-header">
+<header class="essay-header">
+
+  <div class="essay-meta">
     <div class="essay-label" id="label"></div>
-    <h1 id="title"></h1>
-    <p class="subtitle" id="subtitle"></p>
-  </header>
+    <div class="essay-number" id="number"></div>
+  </div>
+
+  <h1 id="title"></h1>
+  <p class="subtitle" id="subtitle"></p>
+
+</header>
 
   <div class="divider"></div>
 
@@ -220,16 +242,18 @@ h1 {
 const essays = {
 
   welcome: {
+    number: "01",
     title: "Welcome to Molecular Dominoes",
     subtitle: "An overview of my mission as a science lecturer.",
     images: [
       "essays/000_WelcomeToMolecularDominoes.png"
     ],
-    previous: null,
+    previous: "cells",
     next: "molecular"
   },
 
   molecular: {
+    number: "02",
     title: "Molecular Dominoes",
     subtitle: "Our cells work through endless chains of molecular dominoes falling.",
     images: [
@@ -240,6 +264,7 @@ const essays = {
   },
 
   chimpanzee: {
+    number: "03",
     title: "I'm a Chimpanzee",
     subtitle: "Genetically, so are you.",
     images: [
@@ -249,28 +274,30 @@ const essays = {
     next: "dogma"
   },
 
-dogma: {
-  title: "The Central Dogma of Molecular Biology",
-  subtitle: "How small genetic changes lead to massive differences.",
-  images: [
-    "stories/central-dogma/1.png",
-    "stories/central-dogma/2.png"
-  ],
-  previous: "chimpanzee",
-  next: "cells"
-},
+  dogma: {
+    number: "04",
+    title: "The Central Dogma of Molecular Biology",
+    subtitle: "How small genetic changes lead to massive differences.",
+    images: [
+      "stories/central-dogma/1.png",
+      "stories/central-dogma/2.png"
+    ],
+    previous: "chimpanzee",
+    next: "cells"
+  },
 
-cells: {
-  title: "You Are Made of Cells",
-  subtitle: "Your body feels like one thing. It isn't.",
-  images: [
-    "stories/cells/1.png",
-    "stories/cells/2.png",
-    "stories/cells/3.png"
-  ],
-  previous: "dogma",
-  next: null
-}
+  cells: {
+    number: "05",
+    title: "You Are Made of Cells",
+    subtitle: "Your body feels like one thing. It isn't.",
+    images: [
+      "stories/cells/1.png",
+      "stories/cells/2.png",
+      "stories/cells/3.png"
+    ],
+    previous: "dogma",
+    next: "welcome"
+  }
 
 };
 
@@ -286,6 +313,7 @@ const essay = essays[essayId];
 const title = document.getElementById("title");
 const subtitle = document.getElementById("subtitle");
 const label = document.getElementById("label");
+const number = document.getElementById("number");
 const slides = document.getElementById("slides");
 
 const previous = document.getElementById("previous");
@@ -296,6 +324,7 @@ if (!essay) {
   title.textContent = "Essay not found";
   subtitle.textContent = "This essay may have moved or the link may be incorrect.";
   label.textContent = "";
+  number.textContent = "";
 
   previous.style.display = "none";
   next.style.display = "none";
@@ -306,6 +335,7 @@ if (!essay) {
 
   title.textContent = essay.title;
   subtitle.textContent = essay.subtitle;
+  number.textContent = "#" + essay.number;
 
   label.textContent =
     essay.images.length === 1
