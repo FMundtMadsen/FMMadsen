@@ -1,1 +1,227 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essay | Filip M. Madsen</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #05070d;
+  --text: #ffffff;
+  --muted: #a0a0a0;
+  --accent: #ff4da6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.container {
+  width: min(900px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 70px 0 100px;
+}
+
+.back {
+  display: inline-block;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 50px;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 650px;
+  margin: 0 0 55px;
+}
+
+.slide {
+  margin-bottom: 45px;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.page-count {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 8px;
+  text-align: right;
+}
+
+.bottom-nav {
+  margin-top: 70px;
+  padding-top: 25px;
+}
+
+.bottom-nav a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 28px);
+    padding-top: 40px;
+  }
+
+  .back {
+    margin-bottom: 35px;
+  }
+
+  .subtitle {
+    margin-bottom: 35px;
+  }
+
+  .slide {
+    margin-bottom: 28px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <a class="back" href="essays.html">← Back to Essays</a>
+
+  <h1 id="title"></h1>
+  <p class="subtitle" id="subtitle"></p>
+
+  <div id="slides"></div>
+
+  <div class="bottom-nav">
+    <a href="essays.html">← Back to Essays</a>
+  </div>
+
+</div>
+
+<script>
+
+/* =========================================
+   THIS IS THE ONLY PART YOU UPDATE
+   WHEN YOU ADD NEW ESSAYS
+========================================= */
+
+const essays = {
+
+  molecular: {
+    title: "Molecular Dominoes",
+    subtitle: "Our cells work through endless chains of molecular dominoes falling.",
+    images: [
+      "essays/001_MolecularDominoes.png"
+    ]
+  },
+
+  chimpanzee: {
+    title: "I'm a Chimpanzee",
+    subtitle: "Genetically, so are you.",
+    images: [
+      "essays/002_ImAChimpanzee.png"
+    ]
+  },
+
+  oxygen: {
+    title: "Why You Need Oxygen to Stay Alive",
+    subtitle: "How oxygen powers life at the molecular level.",
+    images: [
+      "essays/003_WhyYouNeedOxygen.png"
+    ]
+  },
+
+  dogma: {
+    title: "The Central Dogma of Molecular Biology",
+    subtitle: "How small genetic changes lead to massive differences.",
+    images: [
+      "stories/central-dogma/1.png",
+      "stories/central-dogma/2.png",
+      "stories/central-dogma/3.png"
+    ]
+  },
+
+  cells: {
+    title: "You Are Made of Cells",
+    subtitle: "Your body feels like one thing. It isn't.",
+    images: [
+      "stories/cells/1.png",
+      "stories/cells/2.png",
+      "stories/cells/3.png"
+    ]
+  }
+
+};
+
+/* ========================================= */
+
+const params = new URLSearchParams(window.location.search);
+const essayId = params.get("id");
+const essay = essays[essayId];
+
+if (!essay) {
+  document.getElementById("title").textContent = "Essay not found";
+  document.getElementById("subtitle").textContent =
+    "This essay may have moved or the link may be incorrect.";
+} else {
+
+  document.title = essay.title + " | Filip M. Madsen";
+
+  document.getElementById("title").textContent = essay.title;
+  document.getElementById("subtitle").textContent = essay.subtitle;
+
+  const slides = document.getElementById("slides");
+
+  essay.images.forEach((src, index) => {
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "slide";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = essay.title + " — page " + (index + 1);
+
+    wrapper.appendChild(img);
+
+    if (essay.images.length > 1) {
+      const count = document.createElement("div");
+      count.className = "page-count";
+      count.textContent = (index + 1) + " / " + essay.images.length;
+      wrapper.appendChild(count);
+    }
+
+    slides.appendChild(wrapper);
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>
