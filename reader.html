@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +11,17 @@
 :root {
   --bg: #05070d;
   --text: #ffffff;
-  --muted: #a0a0a0;
+  --muted: #9a9a9a;
   --accent: #ff4da6;
+  --line: rgba(255,255,255,0.08);
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -30,35 +34,68 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-.container {
-  width: min(900px, calc(100% - 40px));
+/* Main reading column */
+.reader {
+  width: min(920px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 70px 0 100px;
+  padding: 52px 0 110px;
 }
 
-.back {
-  display: inline-block;
+/* Top navigation */
+.top-nav {
+  margin-bottom: 58px;
+}
+
+.top-nav a {
   color: var(--accent);
   text-decoration: none;
   font-size: 0.9rem;
-  margin-bottom: 50px;
+}
+
+.top-nav a:hover {
+  opacity: 0.75;
+}
+
+/* Essay heading */
+.essay-header {
+  margin-bottom: 54px;
+}
+
+.essay-label {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1.15;
-  margin: 0 0 14px;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin: 0 0 20px;
+  font-weight: 700;
 }
 
 .subtitle {
   color: var(--muted);
-  font-size: 1rem;
-  max-width: 650px;
-  margin: 0 0 55px;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.65;
+  max-width: 660px;
+  margin: 0;
 }
 
+/* Thin editorial divider */
+.divider {
+  height: 1px;
+  background: var(--line);
+  margin: 0 0 54px;
+}
+
+/* Slide/page */
 .slide {
-  margin-bottom: 45px;
+  margin-bottom: 64px;
 }
 
 .slide img {
@@ -70,37 +107,58 @@ h1 {
 
 .page-count {
   color: var(--muted);
-  font-size: 0.8rem;
-  margin-top: 8px;
+  font-size: 0.78rem;
   text-align: right;
+  margin-top: 10px;
 }
 
+/* Bottom navigation */
 .bottom-nav {
-  margin-top: 70px;
-  padding-top: 25px;
+  margin-top: 82px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .bottom-nav a {
   color: var(--accent);
   text-decoration: none;
+  font-size: 0.9rem;
 }
 
+.bottom-nav a:hover {
+  opacity: 0.75;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-  .container {
+
+  .reader {
     width: calc(100% - 28px);
-    padding-top: 40px;
+    padding: 34px 0 80px;
   }
 
-  .back {
-    margin-bottom: 35px;
+  .top-nav {
+    margin-bottom: 38px;
   }
 
-  .subtitle {
-    margin-bottom: 35px;
+  .essay-header {
+    margin-bottom: 36px;
+  }
+
+  .divider {
+    margin-bottom: 36px;
   }
 
   .slide {
-    margin-bottom: 28px;
+    margin-bottom: 34px;
+  }
+
+  .bottom-nav {
+    margin-top: 55px;
+    flex-direction: column;
   }
 }
 </style>
@@ -108,26 +166,34 @@ h1 {
 
 <body>
 
-<div class="container">
+<div class="reader">
 
-  <a class="back" href="essays.html">← Back to Essays</a>
-
-  <h1 id="title"></h1>
-  <p class="subtitle" id="subtitle"></p>
-
-  <div id="slides"></div>
-
-  <div class="bottom-nav">
-    <a href="essays.html">← Back to Essays</a>
+  <div class="top-nav">
+    <a href="essays.html">← Back to Past Essays</a>
   </div>
+
+  <header class="essay-header">
+    <div class="essay-label" id="label"></div>
+    <h1 id="title"></h1>
+    <p class="subtitle" id="subtitle"></p>
+  </header>
+
+  <div class="divider"></div>
+
+  <main id="slides"></main>
+
+  <nav class="bottom-nav">
+    <a id="previous" href="#"></a>
+    <a id="next" href="#"></a>
+  </nav>
 
 </div>
 
 <script>
 
 /* =========================================
-   THIS IS THE ONLY PART YOU UPDATE
-   WHEN YOU ADD NEW ESSAYS
+   ESSAY LIBRARY
+   Add future essays here.
 ========================================= */
 
 const essays = {
@@ -137,7 +203,9 @@ const essays = {
     subtitle: "An overview of my mission as a science lecturer.",
     images: [
       "essays/000_WelcomeToMolecularDominoes.png"
-    ]
+    ],
+    previous: null,
+    next: "molecular"
   },
 
   molecular: {
@@ -145,7 +213,9 @@ const essays = {
     subtitle: "Our cells work through endless chains of molecular dominoes falling.",
     images: [
       "essays/001_MolecularDominoes.png"
-    ]
+    ],
+    previous: "welcome",
+    next: "chimpanzee"
   },
 
   chimpanzee: {
@@ -153,7 +223,9 @@ const essays = {
     subtitle: "Genetically, so are you.",
     images: [
       "essays/002_ImAChimpanzee.png"
-    ]
+    ],
+    previous: "molecular",
+    next: "dogma"
   },
 
   dogma: {
@@ -163,7 +235,9 @@ const essays = {
       "stories/central-dogma/1.png",
       "stories/central-dogma/2.png",
       "stories/central-dogma/3.png"
-    ]
+    ],
+    previous: "chimpanzee",
+    next: "cells"
   },
 
   cells: {
@@ -173,38 +247,60 @@ const essays = {
       "stories/cells/1.png",
       "stories/cells/2.png",
       "stories/cells/3.png"
-    ]
+    ],
+    previous: "dogma",
+    next: null
   }
 
 };
 
-/* ========================================= */
+
+/* =========================================
+   READER LOGIC
+========================================= */
 
 const params = new URLSearchParams(window.location.search);
 const essayId = params.get("id");
 const essay = essays[essayId];
 
+const title = document.getElementById("title");
+const subtitle = document.getElementById("subtitle");
+const label = document.getElementById("label");
+const slides = document.getElementById("slides");
+
+const previous = document.getElementById("previous");
+const next = document.getElementById("next");
+
 if (!essay) {
-  document.getElementById("title").textContent = "Essay not found";
-  document.getElementById("subtitle").textContent =
-    "This essay may have moved or the link may be incorrect.";
+
+  title.textContent = "Essay not found";
+  subtitle.textContent = "This essay may have moved or the link may be incorrect.";
+  label.textContent = "";
+
+  previous.style.display = "none";
+  next.style.display = "none";
+
 } else {
 
   document.title = essay.title + " | Filip M. Madsen";
 
-  document.getElementById("title").textContent = essay.title;
-  document.getElementById("subtitle").textContent = essay.subtitle;
+  title.textContent = essay.title;
+  subtitle.textContent = essay.subtitle;
 
-  const slides = document.getElementById("slides");
+  label.textContent =
+    essay.images.length === 1
+      ? "Visual essay"
+      : essay.images.length + "-page visual story";
 
   essay.images.forEach((src, index) => {
 
-    const wrapper = document.createElement("div");
+    const wrapper = document.createElement("section");
     wrapper.className = "slide";
 
     const img = document.createElement("img");
     img.src = src;
     img.alt = essay.title + " — page " + (index + 1);
+    img.loading = "lazy";
 
     wrapper.appendChild(img);
 
@@ -216,9 +312,21 @@ if (!essay) {
     }
 
     slides.appendChild(wrapper);
-
   });
 
+  if (essay.previous && essays[essay.previous]) {
+    previous.href = "reader.html?id=" + essay.previous;
+    previous.textContent = "← " + essays[essay.previous].title;
+  } else {
+    previous.style.visibility = "hidden";
+  }
+
+  if (essay.next && essays[essay.next]) {
+    next.href = "reader.html?id=" + essay.next;
+    next.textContent = essays[essay.next].title + " →";
+  } else {
+    next.style.visibility = "hidden";
+  }
 }
 
 </script>
