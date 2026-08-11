@@ -152,7 +152,28 @@ h1 {
     margin-bottom: 36px;
   }
 
-  .slide {
+  /* Multi-page stories become swipeable */
+  #slides.multi-page {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #slides.multi-page::-webkit-scrollbar {
+    display: none;
+  }
+
+  #slides.multi-page .slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    margin-bottom: 0;
+  }
+
+  /* Single-page essays remain normal */
+  #slides.single-page .slide {
     margin-bottom: 34px;
   }
 
@@ -291,6 +312,11 @@ if (!essay) {
     essay.images.length === 1
       ? "Visual essay"
       : essay.images.length + "-page visual story";
+  if (essay.images.length > 1) {
+  slides.classList.add("multi-page");
+} else {
+  slides.classList.add("single-page");
+}
 
   essay.images.forEach((src, index) => {
 
