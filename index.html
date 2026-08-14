@@ -219,6 +219,25 @@ footer {
     height: 35vh;
   }
 }
+/* Extra safeguard for touch devices */
+@media (hover: none) and (pointer: coarse) {
+
+  .sidebar {
+    display: none !important;
+  }
+
+  .wrapper {
+    display: block;
+  }
+
+  .content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+}
+
 </style>
 </head>
 
@@ -289,7 +308,7 @@ footer {
       </p>
 
       <p>
-      And currently, I'm a Scientific Director at Novo Nordisk.
+      Currently, I'm a Scientific Director at Novo Nordisk.
       </p>
     </section>
 
